@@ -1,0 +1,23 @@
+::placeholder {
+  color: gray;
+}
+
+body {
+  background-color: darkgray;
+}
+
+h1 {
+  color: red;
+}
+
+@media (max-width: 768px) {
+  body {
+    background-color: antiquewhite;
+  }
+}
+
+@media (max-width: 768px) {
+  h1 {
+    color: blue;
+  }
+}
