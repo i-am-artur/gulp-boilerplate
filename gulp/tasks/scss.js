@@ -11,7 +11,7 @@ import groupCssMediaQueries from 'gulp-group-css-media-queries';
 const sass = gulpSass(dartSass);
 
 export const scss = () => {
-  return app.gulp.src(app.path.src.scss, { sourcemaps: true})
+  return app.gulp.src(app.path.src.scss, { sourcemaps: app.isDev})
     .pipe(app.plugins.plumber(
       app.plugins.notify.onError({
         title: 'SCSS',
@@ -38,10 +38,20 @@ export const scss = () => {
     }))
     .pipe(app.gulp.dest(app.path.build.css))
 
-    // .pipe(cleanCss())
-    // .pipe(rename({
-    //   extname: '.min.css'
-    // }))
+    // .pipe(
+    //   app.plugins.if(
+    //     app.isBuild,
+    //     cleanCss()
+    //   )
+    // )
+    // .pipe(
+    //   app.plugins.if(
+    //     app.isBuild,
+    //     rename({
+    //       extname: '.min.css'
+    //     })
+    //   )
+    // )
     // .pipe(app.gulp.dest(app.path.build.css))
 
     .pipe(app.plugins.browsersync.stream())

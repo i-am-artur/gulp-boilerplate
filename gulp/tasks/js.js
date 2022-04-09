@@ -4,7 +4,7 @@ import eslint from 'gulp-eslint';
 import babel from 'gulp-babel';
 
 export const js = () => {
-  return app.gulp.src(app.path.src.js, { sourcemaps: true })
+  return app.gulp.src(app.path.src.js, { sourcemaps: app.isDev })
     .pipe(app.plugins.plumber(
       app.plugins.notify.onError({
         title: 'JS',
@@ -20,17 +20,17 @@ export const js = () => {
     // lint error, return the stream and pipe to failAfterError last.
     .pipe(eslint.failAfterError())
 
-    // .pipe(babel({
-    //   presets: ['@babel/env']
-    // }))
+    .pipe(babel({
+      presets: ['@babel/env']
+    }))
 
     // .pipe(app.gulp.dest(app.path.build.js))
 
     // use webpack
     // .pipe(webpack({
-    //   mode: 'development',
+    //   mode: app.isBuild ? 'production' : 'development',
     //   optimization: {
-    //     minimize: false,
+    //     minimize: true,
     //   },
     //   output: {
     //     filename: 'app.min.js'

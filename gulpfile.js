@@ -3,6 +3,8 @@ import { path } from './gulp/config/path.js';
 import { plugins } from './gulp/config/plugins.js';
 
 global.app = {
+  isBuild: process.argv.includes('--build'),
+  isDev: !process.argv.includes('--build'),
   path: path,
   gulp: gulp,
   plugins: plugins,
@@ -30,5 +32,9 @@ const fonts = gulp.series(otfToTtf, ttfToWoff, fontsStyle);
 const mainTasks = gulp.parallel(fonts, gulp.parallel(copy, html, scss, js, images));
 
 const dev = gulp.series(reset, mainTasks, gulp.parallel(watcher, server));
+const build = gulp.series(reset, mainTasks);
+
+export { dev };
+export { build };
 
 gulp.task('default', dev);
