@@ -8,6 +8,9 @@
     "dev": "gulp",
     "build": "gulp build --build"
   },
+  "keywords": [
+    "gulp"
+  ],
   "author": "Artur",
   "license": "MIT",
   "devDependencies": {
